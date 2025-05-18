@@ -1,0 +1,76 @@
+type: tool
+name: makedownchange
+description:
+  en_US: Automatically convert Markdown files to PDF with customizable styles. Supports real-time monitoring and batch processing.
+  zh_Hans: 自动将 Markdown 文件转换为 PDF，支持自定义样式。支持实时监控和批量处理。
+identity:
+  name: makedownchange
+  version: 0.0.1
+  description:
+    en_US: Automatically convert Markdown files to PDF with customizable styles
+    zh_Hans: 自动将 Markdown 文件转换为 PDF，支持自定义样式
+  author: morgan
+extra:
+  supported_formats:
+    - pdf
+  features:
+    - markdown_conversion
+    - custom_styles
+    - auto_monitoring
+    - batch_processing
+actions:
+  - name: convert
+    label:
+      en_US: Convert Markdown
+      zh_Hans: 转换 Markdown
+    description:
+      en_US: Convert Markdown to PDF with custom styles
+      zh_Hans: 将 Markdown 转换为 PDF，支持自定义样式
+    parameters:
+      - name: markdown_content
+        type: string
+        required: false
+        description:
+          en_US: The Markdown content to convert (optional, if not provided will search for .md files)
+          zh_Hans: 要转换的 Markdown 内容（可选，如不提供将搜索 .md 文件）
+      - name: style
+        type: string
+        required: false
+        description:
+          en_US: PDF style (default, modern, classic)
+          zh_Hans: PDF 样式（默认、现代、经典）
+        default: default
+      - name: output_filename
+        type: string
+        required: false
+        description:
+          en_US: Output PDF filename (without extension, only used when markdown_content is provided)
+          zh_Hans: 输出 PDF 文件名（不含扩展名，仅在提供 markdown_content 时使用）
+        default: output
+      - name: auto_monitor
+        type: boolean
+        required: false
+        description:
+          en_US: Enable automatic monitoring of directory for new or modified Markdown files
+          zh_Hans: 启用自动监控目录中的新文件或修改的 Markdown 文件
+        default: false
+      - name: monitor_dir
+        type: string
+        required: false
+        description:
+          en_US: Directory to monitor for Markdown files (only used when auto_monitor is true)
+          zh_Hans: 要监控的目录（仅在启用自动监控时使用）
+        default: .
+      - name: output_dir
+        type: string
+        required: false
+        description:
+          en_US: Directory to save converted PDF files (only used when auto_monitor is true)
+          zh_Hans: 保存转换后的 PDF 文件的目录（仅在启用自动监控时使用）
+        default: pdf_output
+    outputs:
+      - name: result
+        type: object
+        description:
+          en_US: Conversion result containing status and file paths
+          zh_Hans: 转换结果，包含状态和文件路径 
