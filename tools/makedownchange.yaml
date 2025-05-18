@@ -2,6 +2,10 @@ label:
   en_US: Markdown to PDF
   zh_Hans: Markdown 转 PDF
 description:
+  human:
+    en_US: Convert Markdown to PDF with custom styles, supports monitoring and batch processing.
+    zh_Hans: 将 Markdown 转为 PDF，支持自定义样式、监控和批量处理。
+  llm: Convert Markdown to PDF with custom styles.
   en_US: Automatically convert Markdown files to PDF with customizable styles. Supports real-time monitoring and batch processing.
   zh_Hans: 自动将 Markdown 文件转换为 PDF，支持自定义样式。支持实时监控和批量处理。
 identity:
@@ -30,6 +34,10 @@ parameters:
     description:
       en_US: The Markdown content to convert (optional, if not provided will search for .md files)
       zh_Hans: 要转换的 Markdown 内容（可选，如不提供将搜索 .md 文件）
+    human_description:
+      en_US: The Markdown content to be converted.
+      zh_Hans: 需要转换的 Markdown 内容。
+    llm_description: The Markdown content to be converted to PDF.
   - name: style
     type: string
     required: false
@@ -41,6 +49,10 @@ parameters:
       en_US: PDF style (default, modern, classic)
       zh_Hans: PDF 样式（默认、现代、经典）
     default: default
+    human_description:
+      en_US: PDF style (default, modern, classic)
+      zh_Hans: PDF 样式（默认、现代、经典）
+    llm_description: PDF style to use for the output file.
   - name: output_filename
     type: string
     required: false
@@ -52,6 +64,10 @@ parameters:
       en_US: Output PDF filename (without extension, only used when markdown_content is provided)
       zh_Hans: 输出 PDF 文件名（不含扩展名，仅在提供 markdown_content 时使用）
     default: output
+    human_description:
+      en_US: Output PDF filename (without extension)
+      zh_Hans: 输出 PDF 文件名（不含扩展名）
+    llm_description: Output PDF filename (without extension).
   - name: auto_monitor
     type: boolean
     required: false
@@ -63,6 +79,10 @@ parameters:
       en_US: Enable automatic monitoring of directory for new or modified Markdown files
       zh_Hans: 启用自动监控目录中的新文件或修改的 Markdown 文件
     default: false
+    human_description:
+      en_US: Enable automatic monitoring of directory for Markdown files
+      zh_Hans: 启用自动监控 Markdown 文件目录
+    llm_description: Enable directory monitoring for Markdown files.
   - name: monitor_dir
     type: string
     required: false
@@ -74,6 +94,10 @@ parameters:
       en_US: Directory to monitor for Markdown files (only used when auto_monitor is true)
       zh_Hans: 要监控的目录（仅在启用自动监控时使用）
     default: .
+    human_description:
+      en_US: Directory to monitor for Markdown files
+      zh_Hans: 监控 Markdown 文件的目录
+    llm_description: Directory to monitor for Markdown files.
   - name: output_dir
     type: string
     required: false
@@ -85,6 +109,10 @@ parameters:
       en_US: Directory to save converted PDF files (only used when auto_monitor is true)
       zh_Hans: 保存转换后的 PDF 文件的目录（仅在启用自动监控时使用）
     default: pdf_output
+    human_description:
+      en_US: Directory to save converted PDF files
+      zh_Hans: 保存 PDF 文件的目录
+    llm_description: Directory to save converted PDF files.
 outputs:
   - name: result
     type: object
