@@ -1,0 +1,13 @@
+identity:
+  name: makedownchange
+  author: morgan
+  description:
+    en_US: Markdown to PDF provider
+    zh_Hans: Markdown 转 PDF 提供者
+extra:
+  python:
+    source: ../main.py
+  supported_formats:
+    - pdf
+tools:
+  - tools/makedownchange.yaml 

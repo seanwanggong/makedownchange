@@ -39,4 +39,4 @@ resource:
   memory: 1048576
 plugins:
   tools:
-    - tools/makedownchange.yaml
+    - provider/makedownchange.yaml
