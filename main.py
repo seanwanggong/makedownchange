@@ -87,7 +87,7 @@ def find_markdown_files(directory='.'):
 
 def convert_markdown_to_pdf(markdown_content, style='default', output_filename='output'):
     # Convert markdown to HTML
-    html_content = markdown.markdown(markdown_content)
+    html_content = markdown.markdown(markdown_content, extensions=['extra', 'codehilite'])
     
     # Add CSS based on style
     css = get_style_css(style)
@@ -96,6 +96,10 @@ def convert_markdown_to_pdf(markdown_content, style='default', output_filename='
         <head>
             <meta charset="utf-8">
             <style>
+                @font-face {{
+                    font-family: 'Noto Sans SC';
+                    src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap');
+                }}
                 {css}
             </style>
         </head>
@@ -106,8 +110,8 @@ def convert_markdown_to_pdf(markdown_content, style='default', output_filename='
     """
     
     # Create temporary file for HTML
-    with tempfile.NamedTemporaryFile(suffix='.html', delete=False) as temp_html:
-        temp_html.write(html_with_style.encode('utf-8'))
+    with tempfile.NamedTemporaryFile(suffix='.html', delete=False, mode='w', encoding='utf-8') as temp_html:
+        temp_html.write(html_with_style)
         temp_html_path = temp_html.name
     
     try:
@@ -122,7 +126,7 @@ def convert_markdown_to_pdf(markdown_content, style='default', output_filename='
 def get_style_css(style):
     styles = {
         'default': """
-            body { font-family: Arial, sans-serif; line-height: 1.6; margin: 2em; }
+            body { font-family: 'Noto Sans SC', Arial, sans-serif; line-height: 1.6; margin: 2em; }
             h1 { color: #333; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }
             h2 { color: #444; margin-top: 1.5em; }
             h3 { color: #555; }
@@ -135,7 +139,7 @@ def get_style_css(style):
             th { background-color: #f4f4f4; }
         """,
         'modern': """
-            body { font-family: 'Helvetica Neue', sans-serif; line-height: 1.8; margin: 2em; color: #2c3e50; }
+            body { font-family: 'Noto Sans SC', 'Helvetica Neue', sans-serif; line-height: 1.8; margin: 2em; color: #2c3e50; }
             h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 0.3em; }
             h2 { color: #34495e; margin-top: 1.5em; }
             h3 { color: #2980b9; }
@@ -148,7 +152,7 @@ def get_style_css(style):
             th { background-color: #ecf0f1; }
         """,
         'classic': """
-            body { font-family: 'Times New Roman', serif; line-height: 1.5; margin: 2em; color: #000; }
+            body { font-family: 'Noto Sans SC', 'Times New Roman', serif; line-height: 1.5; margin: 2em; color: #000; }
             h1 { color: #000; text-align: center; border-bottom: 2px solid #000; padding-bottom: 0.3em; }
             h2 { color: #333; margin-top: 1.5em; border-bottom: 1px solid #ccc; }
             h3 { color: #444; }
